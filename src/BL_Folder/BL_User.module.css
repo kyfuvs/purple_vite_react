@@ -1,0 +1,14 @@
+.box-in-hover {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+   /* margin: 0 !important;
+   padding: 0 !important;
+   transform: scale(0.65);
+   transform-origin: top left; */
+}
+
+.box-in-hover:hover {
+  transform: scale(1.1);
+  color: #110af3;
+  z-index: 10;
+}

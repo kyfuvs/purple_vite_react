@@ -1,0 +1,65 @@
+import React, { useEffect } from 'react'
+import { usePurple } from "../../context/PurpleContext"
+import { Select, MenuItem, FormControl, Box } from '@mui/material'
+
+export default function Input_4_HOB() {
+  const { nuHOB, setNuHOB } = usePurple()
+
+  const times = Array.from({ length: 24 }, (_, hour) => [0, 30].map(min => {
+    const hh = hour.toString().padStart(2, '0')
+    const mm = min.toString().padStart(2, '0')
+    return `${hh}:${mm}`
+  })).flat()
+
+  useEffect(() => {
+    if (!nuHOB) setNuHOB("00:00")
+  }, [nuHOB, setNuHOB])
+
+  return (
+    <Box
+      sx={{
+        display: 'inline-block',
+        transformOrigin: 'top left',
+        transform: 'scale(0.7)',          // default scale
+        '@media (max-width:640px)': {     // small mobile screens
+          transform: 'scale(0.6)',
+        },
+        '@media (min-width:1024px)': {    // large screens
+          transform: 'scale(1)',          // normal size on large screens
+        },
+      }}
+    >
+      <FormControl size="small" sx={{ minWidth: 80 }}>
+        <Select
+          value={nuHOB}
+          onChange={(e) => setNuHOB(e.target.value)}
+          displayEmpty
+          MenuProps={{
+            PaperProps: {
+              sx: {
+                maxHeight: 120,
+                overflowY: 'auto',
+                '& .MuiMenuItem-root': {
+                  fontSize: '0.65rem',
+                  minHeight: '24px',
+                  py: 0.25,
+                }
+              }
+            }
+          }}
+          sx={{
+            fontSize: '0.65rem',
+            py: 0.25,
+            minHeight: '28px',
+          }}
+        >
+          {times.map(time => (
+            <MenuItem key={time} value={time}>
+              {time}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+    </Box>
+  )
+}

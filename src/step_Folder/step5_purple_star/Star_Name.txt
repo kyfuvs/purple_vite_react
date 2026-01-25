@@ -1,0 +1,19 @@
+十四主星 (14 Main Stars) 
+
+** North_Star : 1.紫微星; 2.天機星; 3.太陽星; 4.武曲星; 5.天同星; 6.廉貞星
+紫微星 N1_Emperor
+天機星 N2_Intelligence
+太陽星 N3_Sun
+武曲星 N4_Finance 
+天同星 N5_Enjoyment
+廉貞星 N6_Justice
+
+** South_Star : 1.天府星; 2.太陰星; 3.貪狼星; 4.巨門星; 5.天相星; 6.天梁星; 7.七殺星; 8.破軍星
+天府星 S1_Treasury 
+太陰星 S2_Moon 
+貪狼星 S3_GreedyWolf
+巨門星 S4_HugeGate 
+天相星 S5_Prime_Minister
+天梁星 S6_Longevity
+七殺星 S7_SevenKillings
+破軍星 S8_Destruction 

@@ -1,0 +1,98 @@
+import React,{useState} from 'react'
+// import { usePurple } from "./context/PurpleContext";
+import { usePurple } from "../context/PurpleContext";
+import styles from './B2.module.css'
+// import MUI_messageBox from '../components_MUI/MUI_messageBox'
+// import MUI_messageBox from '../components_MUI/MUI_messageBox'
+
+export default function B2({boxId}) {
+    // const [open, setOpen] = useState(false)
+    const { 
+        showGrid,
+        life_Index,
+        N1_Id,
+        n1, setN1,
+        n2, setN2,
+        n1_emperor, n2_intelligence,
+        msgOpen, setMsgOpen,
+        msgText, setMsgText,
+        showMsgBox, setShowMsgBox,
+        msgBoxText, setMsgBoxText,
+
+    
+    } = usePurple();
+    // 紫微星>天機星>空一格>太陽星>武曲星>天同星>空二格>廉貞星
+    const N_stars=['紫微','天機','','太陽','武曲','天同','','','廉貞']
+    const i = (((boxId - N1_Id )*-1)+12)%12
+
+    // let N1=''
+    let N_star=''
+    switch (i){
+    //    case 0: N1 = N_stars[i] ; break;
+    //    case 1: N2 = N_stars[i] ; break;
+       case 0: setN1(N_stars[i]+'-'+ String(boxId)) 
+               N_star=n1_emperor;     
+               ; break;
+       case 1: setN2(N_stars[i]+'-'+ String(boxId)) 
+               N_star=n2_intelligence;
+               ; break;
+        default:N_star=N_stars[i];break;
+    }
+
+    // const i = N1_Id - antiClock
+    
+  return (
+    
+    <div className={`
+    flex items-top justify-center
+    bg-white dark:bg-black 
+    text-black dark:text-white 
+    w-[20px] h-[20px]
+    sm:w-[100px] sm:h-[50px]
+    md:w-[30px] md:h-[30px]
+    lg:w-[30px] lg:h-[30px]
+    ${showGrid ? 'border border-blue-500 border-dashed' : ''}
+    ${styles["box-in-hover"]}
+    
+    `}
+    >
+        
+      
+        {/* <p>{N_stars[i]}</p> */}
+        <p className='
+        text-violet-300
+        text-[0.3rem] sm:text-sm md:text-[0.45rem] lg:text-[0.4rem]
+        
+        '>
+          {/* {boxId}-{N1_Id} */}
+          <div>
+            {/* Snackbar */}
+            {/* <MUI_messageBox
+                className={`${styles["msgBox-in-hover"]}`}
+                open={open}
+                onClose={() => setOpen(false)}
+                message={'testing'}
+            /> */}
+            <div 
+            className={`
+                ${styles["star-in-hover"]} 
+                [writing-mode:vertical-rl]
+                
+                `}
+            // onClick={() => setOpen(true)} 
+            onClick={() => {
+            // setMsgText(N_stars[i])
+            // setMsgText(N_star)
+            // setMsgOpen(true)
+            setMsgBoxText(N_star)
+            setShowMsgBox(!showMsgBox)
+            }}
+            >
+            {N_stars[i]}
+            </div>
+          </div>
+        </p>
+      
+    </div>
+  )
+}

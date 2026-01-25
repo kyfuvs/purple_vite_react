@@ -1,0 +1,22 @@
+import React from 'react'
+import { usePurple } from "../../context/PurpleContext"
+
+export default function Input_1_Name() {
+  const { nuName, setNuName } = usePurple()
+
+  return (
+    <input
+      type="text"
+      placeholder="Name"
+      value={nuName}
+      onChange={(e) => setNuName(e.target.value)}
+      className="
+        border border-black rounded
+        // bg-white text-black dark:bg-gray-500
+        text-[0.6rem] sm:text-sm
+        px-1 py-[2px]
+        w-20 sm:w-24
+      "
+    />
+  )
+}

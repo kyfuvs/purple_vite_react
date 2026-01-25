@@ -1,0 +1,21 @@
+import React from 'react'
+import { usePurple } from '../../context/PurpleContext'
+import Row_water from './D30_Folder/Row_water'
+import Row_wood from './D30_Folder/Row_wood'
+import Row_gold from './D30_Folder/Row_gold'
+
+export default function N6_star(station,ld) {
+    // const {station,ld}= usePurple()
+
+    let result = 'null'
+    switch(station) {
+        case '水2局': result=Row_water(ld); break;
+        case '木3局': result=Row_wood(ld); break;
+        case '金4局': result=Row_gold(ld); break;
+        case '土5局': result=Row_water(ld); break;
+        case '火6局': result=Row_water(ld); break;
+        default: break
+    }
+    return result
+  
+}

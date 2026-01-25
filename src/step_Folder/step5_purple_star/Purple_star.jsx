@@ -1,0 +1,74 @@
+import React from 'react'
+import { usePurple } from "../../context/PurpleContext";
+import Row_water from './D30_Folder/Row_water';
+import N6_star from './N6_star';
+import Set_N_stars from './Set_N_stars';
+import Set_N_stars_Msg from './Set_N_stars_Msg';
+// import N2_in_career from '../../message/n2_intelligence_Folder/N2_in_career';
+// import N2_in_9_career from '../../message/n2_intelligence_Folder/N2_in_9_career';
+
+
+export default function Purple_star() {
+    const {
+      station,ld,
+      N1_Id, setN1_Id,
+
+    }=usePurple()
+    const earth = '子丑寅卯辰巳午未申酉戌亥';
+    const N1_earth = N6_star(station,ld)
+    const N1_index = earth.indexOf(N1_earth) + 1
+    setN1_Id(N1_index)
+    // const jsonString = JSON.stringify(N2_in_career);
+    // 天機-丑-事業
+  // const data =
+  // N2_in_career?.['天機']?.['事業']?.['地支']?.['丑']
+  // 總論-通論
+  // const result = data
+  //   ? `${data.狀態}\n${data.內容}`
+  //   : '沒有資料'
+
+// const starKey = 'intelligence'   
+// const palaceKey = 'career'     
+// const earthIndex = 2           
+// const earthKey = `e${earthIndex}`
+
+// const data_e =
+//   N2_in_9_career?.[starKey]?.[palaceKey]?.earth?.[earthKey]
+
+// const result_e = data_e
+//   ? `${data_e.status}\n${data_e.content}`
+//   : 'no data'
+
+  // const data_intelligence_in_career =
+  // N2_in_9_career?.[starKey]?.[palaceKey]
+
+  // const result_main = data_intelligence_in_career
+  // ? `${data_intelligence_in_career.main.main1}\n${data_intelligence_in_career.main.main2}`
+  // : 'no data'
+
+    // careerData?.[star]?.[palace]?.地支?.[branch]
+    // let result =''
+    // switch(station) {
+    //     case '水2局': result=Row_water(ld={ld}); break;
+        
+    // }
+    // return result
+     
+
+  return (
+    <div>
+        <N1_emperor_earth/>
+        <p>{station}-{ld} | {N1_earth}-{N1_index} | N1_Id:{N1_Id}</p>
+        
+       
+        <Set_N_stars/>
+        <Set_N_stars_Msg/>
+        {/* <p>{jsonString}</p>
+        <br />
+        <p>{result}</p>
+        <p>result_e:{result_e}</p>
+        <p>result_main:{result_main}</p>
+        */}
+    </div>
+  )
+}
