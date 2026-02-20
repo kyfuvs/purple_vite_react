@@ -1,0 +1,23 @@
+.box-in-hover {
+  margin: 0 !important;
+  padding: 1 !important;
+  transform: scale(0.55);
+  transform-origin: top left;
+}
+
+/* hover (desktop / tablet) */
+.box-in-hover:hover {
+  transform: scale(0.65);
+  z-index: 10;
+}
+
+/* 📱 Small mobile screens */
+@media (max-width: 480px) {
+  .box-in-hover {
+    transform: scale(0.55);
+  }
+
+  .box-in-hover:hover {
+    transform: scale(0.65);
+  }
+}

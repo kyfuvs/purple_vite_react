@@ -1,5 +1,5 @@
 import React from 'react'
-// import styles from "./Form_submit.module.css"
+import styles from "./Reset_Btn.module.css"
 import IconButton from '@mui/material/IconButton'
 import ReplayIcon from '@mui/icons-material/Replay'
 // import { usePurple } from "../../../context/PurpleContext";
@@ -19,8 +19,11 @@ export default function Reset_Btn() {
     }
 
   return (
-    // <div className={styles["box-in-hover"]}>
-    <div>
+    <div className={`
+      ${styles["box-in-hover"]}
+      mx-4 px-2 py-1
+      `}>
+  
       <IconButton
         aria-label="reset"
         size="small"

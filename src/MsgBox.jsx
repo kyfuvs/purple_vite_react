@@ -6,6 +6,7 @@ export default function MsgBox() {
         showGrid,
         showMsgBox, setShowMsgBox,
         msgBoxText, setMsgBoxText,
+        starDetail, setStarDetail,
     }=usePurple()
   return (
     <div className={`
@@ -23,7 +24,10 @@ export default function MsgBox() {
             whitespace-pre-wrap
         "
         >
-        {msgBoxText}
+            
+        <p>{msgBoxText}</p>
+        <p>{starDetail}</p>
+        
         </div>
         }
     </div>  

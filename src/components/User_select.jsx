@@ -2,6 +2,7 @@ import React from 'react'
 import { usePurple } from '../context/PurpleContext'
 import styles from "./User_select.module.css";
 import User_set from './User_set';
+// import Git_User_set from '../../../../Git_User_set';
 import Step from '../step_Folder/Step';
 
 export default function User_select() {
@@ -44,7 +45,8 @@ export default function User_select() {
             <option key={u.value} value={u.value}>{u.label}</option>
             ))}
         </select>
-        <User_set/>
+         <User_set/> 
+        {/*<Git_User_set/>*/}
         {/* <div className='hidden'>
           <Step/>
         </div> */}

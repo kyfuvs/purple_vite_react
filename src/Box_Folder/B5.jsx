@@ -39,7 +39,7 @@ export default function B5({boxId}) {
     flex items-center justify-center
     bg-white dark:bg-black 
     text-black dark:text-white 
-    w-[20px] h-[20px]
+    w-[30px] h-[30px]
     sm:w-[100px] sm:h-[50px]
     md:w-[30px] md:h-[30px]
     lg:w-[30px] lg:h-[30px]

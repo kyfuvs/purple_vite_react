@@ -17,10 +17,10 @@ export default function BL() {
         className={`
           bg-white dark:bg-black
           text-black dark:text-white
-          w-[122px] h-[122px]
+          w-[182px] h-[193px]
           sm:w-[100px] sm:h-[50px]
           md:w-[182px] md:h-[182px]
-          lg:w-[182px] lg:h-[182px]
+          lg:w-[182px] lg:h-[202px]
         `}
       >
         <p className="text-xs sm:text-sm md:text-base lg:text-[0.65rem]">

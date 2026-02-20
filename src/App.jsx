@@ -6,6 +6,8 @@ import Step from "./step_Folder/Step";
 import MsgBox from "./MsgBox";
 import Canvas from "./Canvas";
 import Change_4 from "./Change_4";
+import TextBox from "./TextBox";
+import Canvas_TextBox from "./Canvas_TextBox";
 
 
 export default function App() {
@@ -34,9 +36,10 @@ export default function App() {
         {/* <DOBPicker /> */}
         {/* <Step /> */}
      <div className="flex flex-col lg:flex-row">
-        <Step/> 
-        <Canvas />
-        <MsgBox/>
+        {/* <Step/>  */}
+        {/* <TextBox /> */}
+        <Canvas_TextBox />
+        {/* <MsgBox/> */}
       
       </div>
 

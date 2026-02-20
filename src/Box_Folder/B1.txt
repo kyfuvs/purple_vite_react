@@ -1,0 +1,194 @@
+import React,{useState} from 'react'
+// import { usePurple } from "./context/PurpleContext";
+import { usePurple } from "../context/PurpleContext";
+import styles from './B2.module.css'
+import Star_click from './star_click_Folder/Star_click';
+// import MUI_messageBox from '../components_MUI/MUI_messageBox'
+// import MUI_messageBox from '../components_MUI/MUI_messageBox'
+
+export default function B1({boxId}) {
+    // const [open, setOpen] = useState(false)
+    const { 
+        showGrid,
+        life_Index,
+        N1_Id,
+        S1_Id,
+        n1, setN1,
+        n2, setN2,
+        click_boxId,setClick_boxId,
+        n1_emperor, n2_intelligence,
+        msgOpen, setMsgOpen,
+        msgText, setMsgText,
+        showMsgBox, setShowMsgBox,
+        msgBoxText, setMsgBoxText,
+        clickStar,setClickStar,
+        aux1_lucky, setAux1_lucky,
+        aux1_goat, setAux1_goat,
+        aux1_spinner, setAux1_spinner,
+        aux1_tinGrey, setAux1_tinGrey,
+        aux1_tinYue, setAux1_tinYue,
+        aux2_leftAssistant, setAux2_leftAssistant,
+        aux2_rightAssistant, setAux2_rightAssistant,
+        aux2_skyHorse, setAux2_skyHorse,
+        aux3_manK, setAux3_manK,
+        aux3_manC, setAux3_manC,
+        aux3_earthEmpty, setAux3_earthEmpty,
+        aux3_earthThief, setAux3_earthThief,
+
+    
+    } = usePurple();
+    const earth = '子丑寅卯辰巳午未申酉戌亥';
+    // const [lucky_star,lucky_earth]=aux1_lucky.split('-')
+    // const lucky_Id = earth.indexOf(lucky_earth)+1
+    const [lucky_star, lucky_earth] = (aux1_lucky ?? '').split('-')
+    const lucky_Id = lucky_earth ? earth.indexOf(lucky_earth) + 1: -1
+    const lucky_index = Number(boxId) - Number(lucky_Id)
+
+    const [goat_star, goat_earth] = (aux1_goat ?? '').split('-')
+    const goat_Id = goat_earth ? earth.indexOf(goat_earth) + 1: -1
+    const goat_index = Number(boxId) - Number(goat_Id)
+
+    const [spinner_star, spinner_earth] = (aux1_spinner ?? '').split('-')
+    const spinner_Id = spinner_earth ? earth.indexOf(spinner_earth) + 1: -1
+    const spinner_index = Number(boxId) - Number(spinner_Id)
+    
+    const [tinGrey_star, tinGrey_earth] = (aux1_tinGrey ?? '').split('-')
+    const tinGrey_Id = tinGrey_earth ? earth.indexOf(tinGrey_earth) + 1: -1
+    const tinGrey_index = Number(boxId) - Number(tinGrey_Id)
+
+    const [tinYue_star, tinYue_earth] = (aux1_tinYue ?? '').split('-')
+    const tinYue_Id = tinYue_earth ? earth.indexOf(tinYue_earth) + 1: -1
+    const tinYue_index = Number(boxId) - Number(tinYue_Id)
+
+    const [leftAssistant_star, leftAssistant_earth] = (aux2_leftAssistant ?? '').split('-')
+    const leftAssistant_Id = leftAssistant_earth ? earth.indexOf(leftAssistant_earth) + 1: -1
+    const leftAssistant_index = Number(boxId) - Number(leftAssistant_Id)
+
+    const [rightAssistant_star, rightAssistant_earth] = (aux2_rightAssistant ?? '').split('-')
+    const rightAssistant_Id = rightAssistant_earth ? earth.indexOf(rightAssistant_earth) + 1: -1
+    const rightAssistant_index = Number(boxId) - Number(rightAssistant_Id)
+
+    const [skyHorse_star, skyHorse_earth] = (aux2_skyHorse ?? '').split('-')
+    const skyHorse_Id = skyHorse_earth ? earth.indexOf(skyHorse_earth) + 1: -1
+    const skyHorse_index = Number(boxId) - Number(skyHorse_Id)
+
+    const [manK_star, manK_earth] = (aux3_manK ?? '').split('-')
+    const manK_Id = manK_earth ? earth.indexOf(manK_earth) + 1: -1
+    const manK_index = Number(boxId) - Number(manK_Id)
+
+    const [manC_star, manC_earth] = (aux3_manC ?? '').split('-')
+    const manC_Id = manC_earth ? earth.indexOf(manC_earth) + 1: -1
+    const manC_index = Number(boxId) - Number(manC_Id)
+
+    const [earthEmpty_star, earthEmpty_earth] = (aux3_earthEmpty ?? '').split('-')
+    const earthEmpty_Id = earthEmpty_earth ? earth.indexOf(earthEmpty_earth) + 1: -1
+    const earthEmpty_index = Number(boxId) - Number(earthEmpty_Id)
+
+    const [earthThief_star, earthThief_earth] = (aux3_earthThief ?? '').split('-')
+    const earthThief_Id = earthThief_earth ? earth.indexOf(earthThief_earth) + 1: -1
+    const earthThief_index = Number(boxId) - Number(earthThief_Id)
+   
+ 
+  return (
+   
+    <div className={`
+    relative
+    bg-white dark:bg-black 
+    text-black dark:text-white 
+    w-[20px] h-[20px]
+    sm:w-[100px] sm:h-[50px]
+    md:w-[30px] md:h-[30px]
+    lg:w-[30px] lg:h-[30px]
+    ${showGrid ? 'border border-blue-500 border-dashed' : ''}
+    ${styles["box-in-hover"]}
+    
+    `}
+    >
+        <div className="
+          absolute top-0 left-1/2 -translate-x-1/2
+          flex items-center gap-1
+          whitespace-nowrap
+          text-[0.4rem] sm:text-sm md:text-[0.45rem] lg:text-[0.5rem]
+        ">
+         {lucky_index===0 &&
+          <span className="text-green-500">
+            <Star_click boxId={boxId} star={lucky_star} />
+          </span>
+         }
+         {goat_index===0 &&
+          <span className="text-green-500">
+            <Star_click boxId={boxId} star={goat_star} />
+          </span>
+         }
+
+          {spinner_index===0 &&
+          <span className="text-green-500">
+            <Star_click boxId={boxId} star={spinner_star} />
+          </span>
+         }
+
+         {tinGrey_index===0 &&
+          <span className="text-green-500">
+            <Star_click boxId={boxId} star={tinGrey_star} />
+          </span>
+         }
+
+         {tinYue_index===0 &&
+          <span className="text-green-500">
+            <Star_click boxId={boxId} star={tinYue_star} />
+          </span>
+         }
+
+         {leftAssistant_index===0 &&
+          <span className="text-green-500">
+            <Star_click boxId={boxId} star={leftAssistant_star} />
+          </span>
+         }
+
+         {rightAssistant_index===0 &&
+          <span className="text-green-500">
+            <Star_click boxId={boxId} star={rightAssistant_star} />
+          </span>
+         }
+
+         {skyHorse_index===0 &&
+          <span className="text-green-500">
+            <Star_click boxId={boxId} star={skyHorse_star} />
+          </span>
+         }
+
+         {manK_index===0 &&
+          <span className="text-green-500">
+            <Star_click boxId={boxId} star={manK_star} />
+          </span>
+         }
+
+          {manC_index===0 &&
+          <span className="text-green-500">
+            <Star_click boxId={boxId} star={manC_star} />
+          </span>
+         }
+
+         {earthEmpty_index===0 &&
+          <span className="text-green-500">
+            <Star_click boxId={boxId} star={earthEmpty_star} />
+          </span>
+         }
+
+         {earthThief_index===0 &&
+          <span className="text-green-500">
+            <Star_click boxId={boxId} star={earthThief_star} />
+          </span>
+         }
+          {/* <span className="text-yellow-500">
+            <Star_click boxId={boxId} star={S_stars[j]} />
+          </span> */}
+        
+          
+
+
+
+      </div>
+    </div>
+  )
+}

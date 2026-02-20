@@ -21,6 +21,7 @@ export default function BL_User() {
      lyy, setLyy,
      life_Index, setLife_Index,
      body_Index, setBody_Index,
+     change4, setChange4,
 
        } = usePurple()
 
@@ -43,7 +44,11 @@ export default function BL_User() {
         onClose={() => setOpen(false)}
         message={msg_1_body_meaning}
       />
-      <h1>紫微斗數</h1>
+      <div className='flex flex-row gap-5'>
+        <h1>紫微斗數</h1>
+        <p className='text-violet-400'>[ {lyy.slice(0,1)}-{change4} ]</p>
+      </div>
+      
       {/* 1st Row */}
         <div className='flex flex-row
         text-orange-600 dark:text-orange-400 gap-1 items-center

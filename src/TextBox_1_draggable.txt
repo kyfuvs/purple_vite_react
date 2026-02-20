@@ -1,0 +1,122 @@
+import React, { useState, useRef, useEffect } from 'react'
+import { usePurple } from './context/PurpleContext'
+
+export default function DraggableTextBox() {
+  const {
+    showMsgBox,
+    msgBoxText,
+    starDetail,
+  } = usePurple()
+
+  /* =============================
+     Position State (PERSISTENT)
+  ============================== */
+  const [position, setPosition] = useState(() => {
+    return {
+      x: window.innerWidth / 2 - 200, // center horizontally
+      y: 80
+    }
+  })
+
+  /* =============================
+     Drag State
+  ============================== */
+  const dragging = useRef(false)
+  const offset = useRef({ x: 0, y: 0 })
+  const boxRef = useRef(null)
+
+  /* =============================
+     Mouse Handlers
+  ============================== */
+  const onMouseDown = (e) => {
+    dragging.current = true
+
+    offset.current = {
+      x: e.clientX - position.x,
+      y: e.clientY - position.y,
+    }
+
+    document.addEventListener('mousemove', onMouseMove)
+    document.addEventListener('mouseup', onMouseUp)
+  }
+
+  const onMouseMove = (e) => {
+    if (!dragging.current) return
+
+    setPosition({
+      x: e.clientX - offset.current.x,
+      y: e.clientY - offset.current.y,
+    })
+  }
+
+  const onMouseUp = () => {
+    dragging.current = false
+    document.removeEventListener('mousemove', onMouseMove)
+    document.removeEventListener('mouseup', onMouseUp)
+  }
+
+  /* =============================
+     Cleanup (Safety)
+  ============================== */
+  useEffect(() => {
+    return () => {
+      document.removeEventListener('mousemove', onMouseMove)
+      document.removeEventListener('mouseup', onMouseUp)
+    }
+  }, [])
+
+  if (!showMsgBox) return null
+
+  return (
+    <div
+      ref={boxRef}
+      style={{
+        transform: `translate(${position.x}px, ${position.y}px)`,
+      }}
+      className="
+        fixed
+        top-0 left-0
+        z-50
+        w-[25rem]
+        bg-black/90
+        text-white
+        border border-gray-600
+        rounded-lg
+        shadow-xl
+        select-none
+      "
+    >
+      {/* =============================
+          DRAG HANDLE
+      ============================== */}
+      <div
+        onMouseDown={onMouseDown}
+        className="
+          cursor-move
+          px-3 py-2
+          bg-gray-800
+          border-b border-gray-600
+          text-sm font-semibold
+        "
+      >
+        📜 Star Details (drag here)
+      </div>
+
+      {/* =============================
+          CONTENT
+      ============================== */}
+      <div
+        className="
+          p-3
+          text-[0.75rem] sm:text-sm
+          max-h-[20rem]
+          overflow-y-auto
+          whitespace-pre-wrap
+        "
+      >
+        <p className="mb-2">{msgBoxText}</p>
+        <p className="text-gray-300">{starDetail}</p>
+      </div>
+    </div>
+  )
+}

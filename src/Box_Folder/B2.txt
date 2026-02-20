@@ -1,0 +1,69 @@
+import React,{useState} from 'react'
+// import { usePurple } from "./context/PurpleContext";
+import { usePurple } from "../context/PurpleContext";
+import styles from './B2.module.css'
+import Star_click from './star_click_Folder/Star_click';
+// import MUI_messageBox from '../components_MUI/MUI_messageBox'
+// import MUI_messageBox from '../components_MUI/MUI_messageBox'
+
+export default function B2({boxId}) {
+    // const [open, setOpen] = useState(false)
+    const { 
+        showGrid,
+        life_Index,
+        N1_Id,
+        S1_Id,
+        n1, setN1,
+        n2, setN2,
+        click_boxId,setClick_boxId,
+        n1_emperor, n2_intelligence,
+        msgOpen, setMsgOpen,
+        msgText, setMsgText,
+        showMsgBox, setShowMsgBox,
+        msgBoxText, setMsgBoxText,
+        clickStar,setClickStar,
+
+    
+    } = usePurple();
+    // 紫微星>天機星>空一格>太陽星>武曲星>天同星>空二格>廉貞星
+    const N_stars=['紫微','天機','','太陽','武曲','天同','','','廉貞']
+    const i = (((boxId - N1_Id )*-1)+12)%12
+    const S_stars=['天府','太陰','貪狼','巨門','天相','天梁','七殺','','','','破軍']
+    const j = (((boxId - S1_Id ))+12)%12
+ 
+  return (
+   
+    <div className={`
+    relative
+    bg-white dark:bg-black 
+    text-black dark:text-white 
+    w-[20px] h-[20px]
+    sm:w-[100px] sm:h-[50px]
+    md:w-[30px] md:h-[30px]
+    lg:w-[30px] lg:h-[30px]
+    ${showGrid ? 'border border-blue-500 border-dashed' : ''}
+    ${styles["box-in-hover"]}
+    
+    `}
+    >
+        <div className="
+          absolute top-0 left-1/2 -translate-x-1/2
+          flex items-center gap-1
+          whitespace-nowrap
+          text-[0.45rem] sm:text-sm md:text-[0.45rem] lg:text-[0.6rem]
+        ">
+          <span className="text-violet-300">
+            <Star_click boxId={boxId} star={N_stars[i]} />
+          </span>
+          <span className="text-yellow-500">
+            <Star_click boxId={boxId} star={S_stars[j]} />
+            {/* {j} */}
+          </span>
+        </div>
+
+
+
+      
+    </div>
+  )
+}

@@ -1,0 +1,46 @@
+import React from 'react'
+import { usePurple } from './context/PurpleContext'
+
+export default function TextBox() {
+  const {
+    showGrid,
+    showMsgBox,
+    msgBoxText,
+    starDetail,
+  } = usePurple()
+
+  return (
+    <div
+      className={`
+        absolute
+        top-4
+        left-1/2
+        -translate-x-1/2
+        z-50
+        w-[25rem]
+        bg-black/90
+        text-white
+        rounded
+        shadow-lg
+        ${showGrid ? 'border border-blue-500 border-dashed' : ''}
+      `}
+    >
+      <h1>TextBox</h1>
+
+      {showMsgBox && (
+        <div
+          className="
+            text-[0.75rem]
+            max-h-[20rem]
+            overflow-y-auto
+            pr-2
+            whitespace-pre-wrap
+          "
+        >
+          <p>{msgBoxText}</p>
+          <p>{starDetail}</p>
+        </div>
+      )}
+    </div>
+  )
+}

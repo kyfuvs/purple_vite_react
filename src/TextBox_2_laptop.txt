@@ -1,0 +1,109 @@
+import React, { useState, useRef } from 'react'
+import { usePurple } from './context/PurpleContext'
+
+export default function TextBox() {
+  const {
+    showGrid,
+    showMsgBox, setShowMsgBox,
+    msgBoxText,
+    starDetail,
+  } = usePurple()
+
+  const boxRef = useRef(null)
+
+//   const [position, setPosition] = useState({ x: 100, y: 80 })
+  const [position, setPosition] = useState({ x: 420, y: 80 })
+  const [dragging, setDragging] = useState(false)
+  const [offset, setOffset] = useState({ x: 0, y: 0 })
+
+  const onMouseDown = (e) => {
+    const rect = boxRef.current.getBoundingClientRect()
+    setDragging(true)
+    setOffset({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    })
+  }
+
+  const onMouseMove = (e) => {
+    if (!dragging) return
+    setPosition({
+      x: e.clientX - offset.x,
+      y: e.clientY - offset.y,
+    })
+  }
+
+  const onMouseUp = () => setDragging(false)
+
+  if (!showMsgBox) return null
+
+  return (
+    <div
+      ref={boxRef}
+      onMouseMove={onMouseMove}
+      onMouseUp={onMouseUp}
+      onMouseLeave={onMouseUp}
+      className={`
+        fixed
+        bg-white dark:bg-black
+        text-black dark:text-white
+        border border-gray-400
+        rounded-md
+        shadow-lg
+        z-50
+        ${showGrid ? 'border-dashed border-blue-500' : ''}
+      `}
+      style={{
+        width: '400px',
+        height: '280px',
+        left: position.x,
+        top: position.y,
+      }}
+    >
+      {/* 🔹 HEADER (DRAG HANDLE) */}
+      <div
+        onMouseDown={onMouseDown}
+        className="
+          cursor-move
+          px-3 py-2
+          bg-gray-200 dark:bg-gray-800
+          font-semibold
+          select-none
+          rounded-t-md
+        "
+      >
+        Star Details
+      </div>
+
+      {/* 🔹 CONTENT (SCROLLABLE) */}
+      <div
+        className="
+          px-3 py-2
+          text-[0.75rem] sm:text-sm
+          overflow-y-auto
+        "
+        style={{
+          height: 'calc(100% - 72px)',
+        }}
+      >
+        <p className="whitespace-pre-wrap">{msgBoxText}</p>
+        <p className="whitespace-pre-wrap mt-2">{starDetail}</p>
+      </div>
+
+      {/* 🔹 FIXED OK BUTTON */}
+      <button
+        onClick={() => setShowMsgBox(false)}
+        className="
+          absolute bottom-2 right-2
+          px-4 py-1
+          text-sm
+          bg-blue-600 hover:bg-blue-700
+          text-white
+          rounded
+        "
+      >
+        OK
+      </button>
+    </div>
+  )
+}

@@ -15,6 +15,7 @@ import BS10 from './BS_Folder/BS10'
 import BS11 from './BS_Folder/BS11'
 import BS12 from './BS_Folder/BS12'
 import BL from './BL_Folder/BL'
+import TextBox from './TextBox'
 
 
 export default function Canvas() {
@@ -29,7 +30,7 @@ export default function Canvas() {
             onClose={() => setMsgOpen(false)}
             message={msgText}
           />
-
+        {/* <TextBox /> */}
         {/* 1st Row */}
         <div className='flex flex-row'>
            <BS6 />
